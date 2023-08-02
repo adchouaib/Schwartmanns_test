@@ -1,0 +1,28 @@
+version: "3"
+services:
+  webapi:
+    image: webapi
+    build:
+      context: ./WebApi
+      dockerfile: Dockerfile
+    ports:
+      - "5001:80"
+    volumes:
+      - ./WebApi:/app
+    networks:
+      - mynetwork
+
+  website:
+    image: website
+    build:
+      context: ./Website
+      dockerfile: Dockerfile
+    ports:
+      - "3000:80"
+    volumes:
+      - ./Website:/app
+    networks:
+      - mynetwork
+
+networks:
+  mynetwork:
