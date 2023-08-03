@@ -20,6 +20,7 @@ export class AxiosHttpClient implements HttpClient {
     } catch (error: any) {
       response = error.response;
     }
+
     return {
       statusCode: response.status,
       body: response.data,

@@ -2,7 +2,7 @@ import { Weather } from "@/domain/models";
 import { ILoadWeatherList } from "@/domain/usecases";
 import React, { useEffect, useState } from "react";
 import WeatherCard from "./Components/WeatherCard";
-import { Grid, Typography } from "@mui/material";
+import { Box, CircularProgress, Grid, Typography } from "@mui/material";
 
 type Props = {
   loadWeatherList: ILoadWeatherList;
@@ -10,10 +10,14 @@ type Props = {
 
 const WeatherList: React.FC<Props> = ({ loadWeatherList }: Props) => {
   const [weather, setWeather] = useState<Weather[]>([]);
-
+  const [loading, setLoading] = useState<boolean>(false);
   useEffect(() => {
     console.log("making request" + import.meta.env.VITE_API_URL);
-    loadWeatherList.loadAll().then((res) => setWeather(res));
+    setLoading(true);
+    loadWeatherList
+      .loadAll()
+      .then((res) => setWeather(res))
+      .then(() => setLoading(false));
   }, [loadWeatherList]);
 
   return (
@@ -40,18 +44,24 @@ const WeatherList: React.FC<Props> = ({ loadWeatherList }: Props) => {
       >
         made using Dotnet and ReactJs
       </Typography>
-      <Grid
-        marginTop={10}
-        container
-        direction="row"
-        justifyContent="center"
-        alignItems="center"
-        gap={2}
-      >
-        {weather.map((w, i) => (
-          <WeatherCard key={i} weather={w} />
-        ))}
-      </Grid>
+      {loading ? (
+        <Box display="flex" justifyContent="center" marginTop={10}>
+          <CircularProgress />
+        </Box>
+      ) : (
+        <Grid
+          marginTop={10}
+          container
+          direction="row"
+          justifyContent="center"
+          alignItems="center"
+          gap={2}
+        >
+          {weather.map((w, i) => (
+            <WeatherCard key={i} weather={w} />
+          ))}
+        </Grid>
+      )}
     </>
   );
 };

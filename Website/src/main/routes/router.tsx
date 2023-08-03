@@ -5,6 +5,7 @@ const Router: React.FC = () => {
   return (
     <BrowserRouter>
       <Routes>
+        <Route path="/" Component={makeWeatherPage}></Route>
         <Route path="/home" Component={makeWeatherPage}></Route>
       </Routes>
     </BrowserRouter>
