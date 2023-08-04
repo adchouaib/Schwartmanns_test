@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using Domain.Common;
+using Domain.Enums;
 
 namespace Domain.Entities
 {
@@ -24,12 +25,6 @@ namespace Domain.Entities
 		public UserType Type { get; set; }
 
 		public ICollection<Project> Projects { get; set; }
-	}
-
-	public enum UserType
-	{
-		Admin,
-		Regular
 	}
 }
 
