@@ -1,4 +1,5 @@
 ﻿using System;
+using Application.Contracts;
 using Application.DTOs;
 using Application.Repositories;
 using AutoMapper;
@@ -11,30 +12,40 @@ namespace WebApi.Controllers
     [Route("[controller]")]
     public class UserController : ControllerBase
     {
-        protected readonly IUserRepository _userRepository;
+        protected readonly IUserService _userService;
         protected readonly IMapper _mapper;
 
-        public UserController(IUserRepository userRepository, IMapper mapper)
+        public UserController(IUserService userService, IMapper mapper)
         {
-            _userRepository = userRepository;
+            _userService = userService;
             _mapper = mapper;
         }
 
         [HttpGet("All")]
         public async Task<ActionResult<IEnumerable<GetUser>>> GetAll()
         {
-            var users = _mapper.Map<List<User>, List<GetUser>>(await _userRepository.GetAll());
+            var users = _mapper.Map<List<User>, List<GetUser>>(await _userService.GetAll());
             return Ok(users);
         }
 
-        [HttpGet("{id}", Name = "UserById")]
-        public async Task<ActionResult<GetUser>> Get(Guid id)
+        //[HttpGet("{id}", Name = "UserById")]
+        //public async Task<ActionResult<GetUser>> GetById(Guid id)
+        //{
+        //    var user = _mapper.Map<GetUser>(await _userService.GetById(id));
+        //    if (user != null)
+        //        return Ok(user);
+        //    else
+        //        return NotFound($"user with id {id} not found");
+        //}
+
+        [HttpGet("{email}", Name = "UserById")]
+        public async Task<ActionResult<GetUser>> GetById(string email)
         {
-            var user = _mapper.Map<GetUser>(await _userRepository.Get(id));
+            var user = _mapper.Map<GetUser>(await _userService.GetByEmail(email));
             if (user != null)
                 return Ok(user);
             else
-                return NotFound($"user with id {id} not found");
+                return NotFound($"user with id {email} not found");
         }
 
         [HttpPost("Create")]
@@ -47,11 +58,24 @@ namespace WebApi.Controllers
                 if (!ModelState.IsValid)
                     return BadRequest(ModelState);
 
-                User newUser = _mapper.Map<User>(user);
-                await _userRepository.Create(newUser);
-                return CreatedAtRoute("UserById", new { id = newUser.Id }, newUser);
+                await _userService.CreateUser(user);
+                return Ok();
             }
             catch (Exception ex)
+            {
+                return BadRequest();
+            }
+        }
+
+        [HttpPost("login")]
+        public async Task<ActionResult<JwtToken>> Login([FromBody]Login login)
+        {
+            try
+            {
+                var token = await _userService.Login(login);
+                return Ok(token);
+            }
+            catch(Exception ex)
             {
                 return BadRequest();
             }

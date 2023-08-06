@@ -1,14 +1,15 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Switch, Route, Redirect } from "react-router-dom";
 import { makeWeatherPage } from "../factories/pages";
+import { makeLogin } from "../factories/pages/LoginFactory";
+import PrivateRoute from "./private-routes";
 
 const Router: React.FC = () => {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" Component={makeWeatherPage}></Route>
-        <Route path="/home" Component={makeWeatherPage}></Route>
-      </Routes>
-    </BrowserRouter>
+    <Switch>
+      <Route path="/login" exact component={makeLogin} />
+      <Route path="/" exact component={() => <Redirect to={"/home"} />} />
+      <PrivateRoute path="/home" exact component={makeWeatherPage} />
+    </Switch>
   );
 };
 

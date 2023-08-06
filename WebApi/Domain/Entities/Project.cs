@@ -12,7 +12,7 @@ namespace Domain.Entities
 		public string FileName { get; set; }
 		public string FilePath { get; set; }
 
-		public Guid UserId { get; set; }
+		public string UserId { get; set; }
 		public User User { get; set; }
 
 		public Guid ClientId { get; set; }

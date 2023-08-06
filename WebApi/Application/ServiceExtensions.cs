@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Reflection;
-using FluentValidation;
-using MediatR;
+using Application.Contracts;
+using Application.Services;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Application
@@ -11,6 +11,7 @@ namespace Application
 		public static void ConfigureApplication(this IServiceCollection services)
 		{
 			services.AddAutoMapper(Assembly.GetExecutingAssembly());
+			services.AddScoped(typeof(IUserService), typeof(UserService));
 		}
 	}
 }
