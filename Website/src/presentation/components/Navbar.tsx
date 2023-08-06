@@ -15,8 +15,24 @@ import { Link, useHistory } from "react-router-dom";
 import { AccountState } from "./Atoms";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import { removeCurrentAccount } from "../../main/adapters/currentAccountAdapter";
+import { colors } from "@mui/material";
+import { deepOrange } from "@mui/material/colors";
 
-const pages = ["Weather"];
+type Page = {
+  name: string;
+  path: string;
+};
+
+const pages: Page[] = [
+  {
+    name: "weather",
+    path: "/home",
+  },
+  {
+    name: "users",
+    path: "/users",
+  },
+];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
 const Navbar: React.FC = () => {
@@ -110,9 +126,13 @@ const Navbar: React.FC = () => {
               }}
             >
               {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography component={Link} to={"/home"} textAlign="center">
-                    {page}
+                <MenuItem key={page.name} onClick={handleCloseNavMenu}>
+                  <Typography
+                    component={Link}
+                    to={page.path}
+                    textAlign="center"
+                  >
+                    {page.name}
                   </Typography>
                 </MenuItem>
               ))}
@@ -140,12 +160,12 @@ const Navbar: React.FC = () => {
             {pages.map((page) => (
               <Button
                 component={Link}
-                to={"/home"}
-                key={page}
+                to={page.path}
+                key={page.name}
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: "white", display: "block" }}
               >
-                {page}
+                {page.name}
               </Button>
             ))}
           </Box>
@@ -153,7 +173,7 @@ const Navbar: React.FC = () => {
           {Account ? (
             <Box sx={{ flexGrow: 0 }}>
               <Tooltip title="Open settings">
-                <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                <IconButton onClick={handleOpenUserMenu}>
                   <Avatar
                     alt={Account.name.toUpperCase()}
                     src="/static/images/avatar/2.jpg"
@@ -188,7 +208,7 @@ const Navbar: React.FC = () => {
           ) : (
             <Button
               component={Link}
-              to={"/home"}
+              to={"/login"}
               onClick={handleCloseNavMenu}
               sx={{ my: 2, color: "white", display: "block" }}
             >
