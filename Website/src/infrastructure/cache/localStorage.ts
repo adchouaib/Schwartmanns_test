@@ -1,8 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { GetStorage } from "../../data/protocols/cache/getStorage";
 import { SetStorage } from "../../data/protocols/cache/setStorage";
+import { RemoveStorage } from "../../data/protocols/cache/removeStorage";
 
-export class LocalStorage implements SetStorage, GetStorage {
+export class LocalStorage implements SetStorage, GetStorage, RemoveStorage {
   set(key: string, value: object): void {
     if (value) {
       localStorage.setItem(key, JSON.stringify(value));
@@ -14,5 +15,9 @@ export class LocalStorage implements SetStorage, GetStorage {
   get(key: string): any {
     const item = localStorage.getItem(key);
     return item !== null ? JSON.parse(item) : null;
+  }
+
+  remove(key: string): void {
+    localStorage.removeItem(key);
   }
 }

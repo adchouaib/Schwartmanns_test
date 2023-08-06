@@ -22,6 +22,7 @@ export type HttpRequest = {
 export type HttpResponse<T = any> = {
   statusCode: HttpStatusCode;
   body?: T;
+  error: string;
 };
 
 export interface HttpClient<T = any> {

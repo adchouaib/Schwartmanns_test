@@ -8,3 +8,7 @@ export const setCurrentAccount = (account: Account): void => {
 export const getCurrentAccount = (): Account => {
   return makeLocalStorage().get("account");
 };
+
+export const removeCurrentAccount = (): void => {
+  return makeLocalStorage().remove("account");
+};

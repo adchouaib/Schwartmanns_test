@@ -1,6 +1,6 @@
 export class UnexpectedError extends Error {
-  constructor() {
-    super("Unexpected Error");
+  constructor(message: string) {
+    super(message);
     this.name = "Unexpected Error";
   }
 }

@@ -68,16 +68,16 @@ namespace WebApi.Controllers
         }
 
         [HttpPost("login")]
-        public async Task<ActionResult<JwtToken>> Login([FromBody]Login login)
+        public async Task<ActionResult<JwtToken>> Login([FromBody] Login login)
         {
             try
             {
                 var token = await _userService.Login(login);
                 return Ok(token);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                return BadRequest();
+                return BadRequest(ex.Message);
             }
         }
     }

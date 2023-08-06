@@ -11,15 +11,18 @@ import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { AccountState } from "./Atoms";
-import { useRecoilValue } from "recoil";
+import { useRecoilValue, useSetRecoilState } from "recoil";
+import { removeCurrentAccount } from "../../main/adapters/currentAccountAdapter";
 
 const pages = ["Weather"];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
 const Navbar: React.FC = () => {
   const Account = useRecoilValue(AccountState);
+  const setAccountState = useSetRecoilState(AccountState);
+  const navigate = useHistory();
 
   useEffect(() => {
     console.log(Account);
@@ -37,6 +40,14 @@ const Navbar: React.FC = () => {
   };
   const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElUser(event.currentTarget);
+  };
+
+  const handleMenuItems = (event: React.MouseEvent<HTMLElement>) => {
+    if (event.currentTarget.textContent == "Logout") {
+      setAccountState(null);
+      removeCurrentAccount();
+      navigate.replace("/");
+    }
   };
 
   const handleCloseNavMenu = () => {
@@ -167,7 +178,9 @@ const Navbar: React.FC = () => {
               >
                 {settings.map((setting) => (
                   <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                    <Typography textAlign="center">{setting}</Typography>
+                    <Typography textAlign="center" onClick={handleMenuItems}>
+                      {setting}
+                    </Typography>
                   </MenuItem>
                 ))}
               </Menu>

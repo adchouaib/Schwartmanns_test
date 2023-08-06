@@ -26,7 +26,7 @@ export class Authenticate implements IAuthenticate {
       case HttpStatusCode.unauthorized:
         throw new InvalidCredentialsError();
       default:
-        throw new UnexpectedError();
+        throw new UnexpectedError(HttpResponse.error);
     }
   }
 }

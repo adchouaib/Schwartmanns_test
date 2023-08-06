@@ -1,6 +1,6 @@
 import { useForm, SubmitHandler } from "react-hook-form";
 import { IAuthenticate } from "@/domain/usecases/IAuthenticate";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -33,25 +33,28 @@ const Login: React.FC<Props> = ({ Authentication, SetCurrentAccount }) => {
     formState: { errors },
     handleSubmit,
   } = useForm<IFormInput>();
+  const [error, setError] = useState(null);
   const navigate = useHistory();
   const setAccountState = useSetRecoilState(AccountState);
 
   useEffect(() => {
     if (getCurrentAccount()) {
-      console.log(getCurrentAccount());
       navigate.replace("/");
     }
   });
 
   const onSubmit: SubmitHandler<IFormInput> = async (data) => {
-    const account = await Authentication.auth({
-      email: data.email,
-      password: data.password,
-    });
-    console.log(account);
-    setAccountState(account);
-    SetCurrentAccount(account);
-    navigate.push("/home");
+    try {
+      const account = await Authentication.auth({
+        email: data.email,
+        password: data.password,
+      });
+      setAccountState(account);
+      SetCurrentAccount(account);
+      navigate.push("/home");
+    } catch (error) {
+      setError(error.message);
+    }
   };
 
   return (
@@ -123,17 +126,6 @@ const Login: React.FC<Props> = ({ Authentication, SetCurrentAccount }) => {
             autoComplete="current-password"
             {...register("password", {
               required: "Password is required",
-              minLength: {
-                value: 8,
-                message: "Password must contain at least 8 characters",
-              },
-              validate: (value) => {
-                return (
-                  [/[a-z]/, /[A-Z]/, /[0-9]/, /[^a-zA-Z0-9]/].every((pattern) =>
-                    pattern.test(value)
-                  ) || "must include lower, upper, number, and special chars"
-                );
-              },
             })}
           />
           {errors.password && (
@@ -149,6 +141,18 @@ const Login: React.FC<Props> = ({ Authentication, SetCurrentAccount }) => {
             </Typography>
           )}
 
+          {error && (
+            <Typography
+              component="span"
+              color={"red"}
+              sx={{
+                fontFamily: "Lexend Deca, sans-serif",
+                fontSize: 12,
+              }}
+            >
+              {error}
+            </Typography>
+          )}
           <Button
             type="submit"
             fullWidth
