@@ -3,7 +3,6 @@ import { getCurrentAccount } from "../adapters/currentAccountAdapter";
 
 const PrivateRoute: React.FC<RouteProps> = (props: RouteProps) => {
   const currentAccount = getCurrentAccount();
-  console.log(currentAccount);
   return currentAccount ? (
     <Route {...props} />
   ) : (

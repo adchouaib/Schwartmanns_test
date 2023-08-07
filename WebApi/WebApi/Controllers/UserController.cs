@@ -4,6 +4,7 @@ using Application.DTOs;
 using Application.Repositories;
 using AutoMapper;
 using Domain.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebApi.Controllers
@@ -21,6 +22,7 @@ namespace WebApi.Controllers
             _mapper = mapper;
         }
 
+        [Authorize]
         [HttpGet("All")]
         public async Task<ActionResult<IEnumerable<GetUser>>> GetAll()
         {
@@ -38,6 +40,7 @@ namespace WebApi.Controllers
         //        return NotFound($"user with id {id} not found");
         //}
 
+        [Authorize]
         [HttpGet("{email}", Name = "UserById")]
         public async Task<ActionResult<GetUser>> GetById(string email)
         {
@@ -47,7 +50,7 @@ namespace WebApi.Controllers
             else
                 return NotFound($"user with id {email} not found");
         }
-
+        [Authorize]
         [HttpPost("Create")]
         public async Task<ActionResult<GetUser>> Create([FromBody] CreateUser user)
         {

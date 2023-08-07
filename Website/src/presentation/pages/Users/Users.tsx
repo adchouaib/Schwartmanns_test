@@ -21,7 +21,6 @@ const Users: React.FC<Props> = ({ loadUserList }) => {
   const [loading, setLoading] = useState<boolean>(false);
 
   useEffect(() => {
-    console.log("making request" + import.meta.env.VITE_API_URL);
     setLoading(true);
     loadUserList
       .loadAll()

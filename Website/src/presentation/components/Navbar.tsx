@@ -15,8 +15,6 @@ import { Link, useHistory } from "react-router-dom";
 import { AccountState } from "./Atoms";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import { removeCurrentAccount } from "../../main/adapters/currentAccountAdapter";
-import { colors } from "@mui/material";
-import { deepOrange } from "@mui/material/colors";
 
 type Page = {
   name: string;
@@ -40,9 +38,7 @@ const Navbar: React.FC = () => {
   const setAccountState = useSetRecoilState(AccountState);
   const navigate = useHistory();
 
-  useEffect(() => {
-    console.log(Account);
-  }, [Account]);
+  useEffect(() => {}, [Account]);
 
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
     null

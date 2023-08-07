@@ -13,14 +13,19 @@ export class AuthorizedClientAdapter implements HttpClient {
 
   async request(data: HttpRequest): Promise<HttpResponse> {
     const account = this.getStorage.get("account");
-    if (account?.accessToken) {
-      Object.assign(data, {
-        headers: Object.assign(data.headers || {}, {
-          "x-access-token": account.accessToken,
-        }),
-      });
+
+    if (account?.token) {
+      const modifiedHeaders = {
+        ...(data.headers || {}),
+        Authorization: `Bearer ${account.token}`,
+      };
+
+      const modifiedData = { ...data, headers: modifiedHeaders };
+      const httpResponse = await this.httpClient.request(modifiedData);
+      return httpResponse;
+    } else {
+      const httpResponse = await this.httpClient.request(data);
+      return httpResponse;
     }
-    const httpResponse = await this.httpClient.request(data);
-    return httpResponse;
   }
 }
