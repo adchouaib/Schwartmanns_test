@@ -1,13 +1,8 @@
 import { Switch, Route, Redirect } from "react-router-dom";
-import { makeWeatherPage } from "../factories/pages";
-import { makeLogin } from "../factories/pages/LoginFactory";
+import { makeWeatherPage, makeUsersPage, makeLogin } from "../factories/pages";
 import PrivateRoute from "./private-routes";
-import { makeUsersPage } from "../factories/pages/UsersFactory";
 import { useEffect, useState } from "react";
-import {
-  isTokenExpired,
-  removeCurrentAccount,
-} from "../adapters/currentAccountAdapter";
+import { isTokenExpired, removeCurrentAccount } from "../adapters";
 
 const Router: React.FC = () => {
   const [expired, setExpired] = useState(false);

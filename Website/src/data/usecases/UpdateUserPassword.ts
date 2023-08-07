@@ -1,11 +1,9 @@
+import { InvalidCredentialsError, UnexpectedError } from "../../domain/errors";
 import { HttpClient, HttpStatusCode } from "../protocols/http";
-
-import { InvalidCredentialsError } from "../../domain/errors/InvalidCredentialsError";
-import { UnexpectedError } from "../../domain/errors";
 import {
   IUpdateUserPassword,
   UpdateUserPasswordRequest,
-} from "../../domain/usecases/IUpdateUserPassword";
+} from "@/domain/usecases/IUpdateUserPassword";
 
 export class UpdateUserPassword implements IUpdateUserPassword {
   constructor(

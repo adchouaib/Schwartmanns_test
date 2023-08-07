@@ -13,9 +13,9 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { useHistory } from "react-router-dom";
 import { Account } from "../../../domain/models/Account";
-import { getCurrentAccount } from "../../../main/adapters/currentAccountAdapter";
+import { getCurrentAccount } from "../../../main/adapters";
 import { useSetRecoilState } from "recoil";
-import { AccountState } from "../../../presentation/components/Atoms";
+import { AccountState } from "../../../presentation/components";
 import { blue } from "@mui/material/colors";
 
 type Props = {

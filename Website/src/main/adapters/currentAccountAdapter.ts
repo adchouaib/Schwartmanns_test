@@ -1,5 +1,5 @@
-import { Account } from "../../domain/models/Account";
-import { makeLocalStorage } from "../factories/cache/localStorageFactory";
+import { Account } from "@/domain/models/Account";
+import { makeLocalStorage } from "../factories/cache";
 import jwtDecode from "jwt-decode";
 
 export const setCurrentAccount = (account: Account): void => {

@@ -14,7 +14,7 @@ import MenuItem from "@mui/material/MenuItem";
 import { Link, useHistory } from "react-router-dom";
 import { AccountState } from "./Atoms";
 import { useRecoilValue, useSetRecoilState } from "recoil";
-import { removeCurrentAccount } from "../../main/adapters/currentAccountAdapter";
+import { removeCurrentAccount } from "../../main/adapters";
 
 type Page = {
   name: string;
@@ -31,7 +31,7 @@ const pages: Page[] = [
     path: "/users",
   },
 ];
-const settings = ["Profile", "Account", "Dashboard", "Logout"];
+const settings = ["Logout"];
 
 const Navbar: React.FC = () => {
   const Account = useRecoilValue(AccountState);

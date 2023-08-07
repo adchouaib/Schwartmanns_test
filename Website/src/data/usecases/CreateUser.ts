@@ -1,9 +1,5 @@
-import { UnexpectedError } from "../../domain/errors";
-import { InvalidCredentialsError } from "../../domain/errors/InvalidCredentialsError";
-import {
-  CreateUserRequest,
-  ICreateUser,
-} from "../../domain/usecases/ICreateUser";
+import { InvalidCredentialsError, UnexpectedError } from "../../domain/errors";
+import { CreateUserRequest, ICreateUser } from "@/domain/usecases/ICreateUser";
 import { HttpClient, HttpStatusCode } from "../protocols/http";
 
 export class CreateUser implements ICreateUser {

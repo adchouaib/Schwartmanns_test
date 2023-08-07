@@ -1,6 +1,6 @@
-import { ILoadWeatherList } from "../../domain/usecases";
+import { ILoadWeatherList } from "@/domain/usecases";
 import { HttpClient, HttpStatusCode } from "../protocols/http";
-import { Weather } from "../../domain/models";
+import { Weather } from "@/domain/models";
 import { AccessDeniedError, UnexpectedError } from "../../domain/errors";
 
 export class LoadWeatherList implements ILoadWeatherList {

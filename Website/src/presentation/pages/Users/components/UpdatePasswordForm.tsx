@@ -1,4 +1,4 @@
-import { IUpdateUserPassword } from "@/domain/usecases/IUpdateUserPassword";
+import { IUpdateUserPassword } from "@/domain/usecases";
 import {
   Box,
   Button,

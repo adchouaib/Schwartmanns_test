@@ -1,7 +1,7 @@
-import { UpdateUserPassword } from "../../../data/usecases/UpdateUserPassword";
-import { IUpdateUserPassword } from "../../../domain/usecases/IUpdateUserPassword";
+import { UpdateUserPassword } from "../../../data/usecases";
+import { IUpdateUserPassword } from "@/domain/usecases";
 import { makeApiUrl } from "../http";
-import { makeAuthorizeClientAdapter } from "../adapters/authorizedClientAdapter";
+import { makeAuthorizeClientAdapter } from "../adapters";
 
 export const makeUpdateUserPassword = (): IUpdateUserPassword =>
   new UpdateUserPassword(

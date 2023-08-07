@@ -1,5 +1,5 @@
 import { Route, RouteProps, Redirect } from "react-router-dom";
-import { getCurrentAccount } from "../adapters/currentAccountAdapter";
+import { getCurrentAccount } from "../adapters";
 
 const PrivateRoute: React.FC<RouteProps> = (props: RouteProps) => {
   const currentAccount = getCurrentAccount();

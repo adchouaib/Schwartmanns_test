@@ -1,7 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { GetStorage } from "../../data/protocols/cache/getStorage";
-import { SetStorage } from "../../data/protocols/cache/setStorage";
-import { RemoveStorage } from "../../data/protocols/cache/removeStorage";
+import { GetStorage, RemoveStorage, SetStorage } from "@/data/protocols/cache";
 
 export class LocalStorage implements SetStorage, GetStorage, RemoveStorage {
   set(key: string, value: object): void {

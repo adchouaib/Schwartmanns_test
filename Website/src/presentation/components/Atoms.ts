@@ -1,5 +1,5 @@
-import { getCurrentAccount } from "../../main/adapters/currentAccountAdapter";
-import { Account } from "../../domain/models/Account";
+import { getCurrentAccount } from "../../main/adapters";
+import { Account } from "@/domain/models";
 import { atom } from "recoil";
 
 export const AccountState = atom<Account | null>({

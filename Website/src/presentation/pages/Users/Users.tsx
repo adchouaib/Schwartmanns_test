@@ -7,15 +7,17 @@ import {
   Typography,
 } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
-import { User } from "../../../domain/models/User";
-import { ILoadUserList } from "../../../domain/usecases/ILoadUserList";
+import { User } from "@/domain/models";
+import {
+  ILoadUserList,
+  ICreateUser,
+  IDeleteUser,
+  IUpdateUserPassword,
+} from "@/domain/usecases";
 import React, { useEffect, useState } from "react";
 import UserTable from "./components/UserTable";
 import UserForm from "./components/UserForm";
-import { ICreateUser } from "../../../domain/usecases/ICreateUser";
 import SnackBar from "./components/Snackbar";
-import { IDeleteUser } from "../../../domain/usecases/IDeleteUser";
-import { IUpdateUserPassword } from "../../../domain/usecases/IUpdateUserPassword";
 import UpdatePasswordForm from "./components/UpdatePasswordForm";
 
 type Props = {

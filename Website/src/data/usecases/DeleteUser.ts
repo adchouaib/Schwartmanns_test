@@ -1,10 +1,6 @@
 import { HttpClient, HttpStatusCode } from "../protocols/http";
-import {
-  DeleteUserRequest,
-  IDeleteUser,
-} from "../../domain/usecases/IDeleteUser";
-import { InvalidCredentialsError } from "../../domain/errors/InvalidCredentialsError";
-import { UnexpectedError } from "../../domain/errors";
+import { DeleteUserRequest, IDeleteUser } from "@/domain/usecases/IDeleteUser";
+import { InvalidCredentialsError, UnexpectedError } from "../../domain/errors";
 
 export class DeleteUser implements IDeleteUser {
   constructor(

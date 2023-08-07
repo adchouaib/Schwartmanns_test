@@ -1,4 +1,5 @@
-import { User } from "../../../../domain/models/User";
+import { User } from "@/domain/models";
+import { IDeleteUser } from "@/domain/usecases";
 import {
   Avatar,
   Box,
@@ -11,11 +12,10 @@ import {
   TableRow,
   Typography,
 } from "@mui/material";
-import { blue, grey, red } from "@mui/material/colors";
-import React, { Dispatch, SetStateAction } from "react";
 import DeleteIcon from "@mui/icons-material/Delete";
 import ChangeCircleIcon from "@mui/icons-material/ChangeCircle";
-import { IDeleteUser } from "../../../../domain/usecases/IDeleteUser";
+import { blue, grey, red } from "@mui/material/colors";
+import React, { Dispatch, SetStateAction } from "react";
 
 type Props = {
   users: User[];

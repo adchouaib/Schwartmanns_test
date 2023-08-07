@@ -1,7 +1,7 @@
 import { HttpClient, HttpStatusCode } from "../protocols/http";
-import { User } from "../../domain/models/User";
+import { User } from "@/domain/models/User";
 import { AccessDeniedError, UnexpectedError } from "../../domain/errors";
-import { ILoadUserList } from "../../domain/usecases/ILoadUserList";
+import { ILoadUserList } from "@/domain/usecases/ILoadUserList";
 
 export class LoadUserList implements ILoadUserList {
   constructor(

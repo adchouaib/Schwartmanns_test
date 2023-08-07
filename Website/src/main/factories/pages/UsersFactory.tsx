@@ -1,8 +1,10 @@
-import Users from "../../../presentation/pages/Users/Users";
-import { makeCreateUser } from "../usecases/CreateUserFactory";
-import { makeDeleteUser } from "../usecases/DeleteUserFactory";
-import { makeLoadUserList } from "../usecases/LoadUserListFactory";
-import { makeUpdateUserPassword } from "../usecases/UpdateUserPasswordFactory";
+import { Users } from "../../../presentation/pages";
+import {
+  makeCreateUser,
+  makeDeleteUser,
+  makeLoadUserList,
+  makeUpdateUserPassword,
+} from "../usecases";
 
 export const makeUsersPage: React.FC = () => {
   return (

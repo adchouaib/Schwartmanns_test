@@ -1,7 +1,7 @@
-import Login from "../../../presentation/pages/Login/Login";
+import { Login } from "../../../presentation/pages";
 import React from "react";
 import { makeAuthentication } from "../usecases/Authenticate";
-import { setCurrentAccount } from "../../../main/adapters/currentAccountAdapter";
+import { setCurrentAccount } from "../../../main/adapters";
 
 export const makeLogin: React.FC = () => {
   return (

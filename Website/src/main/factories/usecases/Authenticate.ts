@@ -1,5 +1,5 @@
-import { Authenticate } from "../../../data/usecases/Authenticate";
-import { IAuthenticate } from "../../../domain/usecases/IAuthenticate";
+import { Authenticate } from "../../../data/usecases";
+import { IAuthenticate } from "@/domain/usecases";
 import { makeApiUrl, makeAxiosHttpClient } from "../http";
 
 export const makeAuthentication = (): IAuthenticate =>

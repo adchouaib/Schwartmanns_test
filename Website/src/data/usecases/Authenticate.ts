@@ -1,11 +1,11 @@
-import { Account } from "../../domain/models/Account";
+import { InvalidCredentialsError, UnexpectedError } from "../../domain/errors";
 import {
   AuthenticationRequest,
   IAuthenticate,
-} from "../../domain/usecases/IAuthenticate";
+} from "@/domain/usecases/IAuthenticate";
 import { HttpClient, HttpStatusCode } from "../protocols/http";
-import { InvalidCredentialsError } from "../../domain/errors/InvalidCredentialsError";
-import { UnexpectedError } from "../../domain/errors";
+
+import { Account } from "@/domain/models";
 
 export class Authenticate implements IAuthenticate {
   constructor(

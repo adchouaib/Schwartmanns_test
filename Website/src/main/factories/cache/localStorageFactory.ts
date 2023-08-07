@@ -1,3 +1,3 @@
-import { LocalStorage } from "../../../infrastructure/cache/localStorage";
+import { LocalStorage } from "../../../infrastructure/cache";
 
 export const makeLocalStorage = (): LocalStorage => new LocalStorage();

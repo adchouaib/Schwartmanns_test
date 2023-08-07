@@ -1,4 +1,4 @@
-import { User } from "../models/User";
+import { User } from "@/domain/models/User";
 
 export interface ILoadUserList {
   loadAll: () => Promise<User[]>;
