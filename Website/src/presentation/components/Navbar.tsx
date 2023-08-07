@@ -71,7 +71,7 @@ const Navbar: React.FC = () => {
   };
 
   return (
-    <AppBar position="static">
+    <AppBar position="sticky" sx={{ top: 8 }}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <Typography

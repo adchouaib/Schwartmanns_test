@@ -18,6 +18,7 @@ export class AxiosHttpClient implements HttpClient {
         headers: data.headers,
       });
     } catch (error: any) {
+      console.log(error);
       response = error.response;
     }
 

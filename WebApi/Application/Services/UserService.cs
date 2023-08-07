@@ -55,6 +55,13 @@ namespace Application.Services
             return await _userManager.FindByIdAsync(id.ToString());
         }
 
+        public async Task<Boolean> DeleteUser(DeleteUser deleteUser)
+        {
+            var user = await GetById(deleteUser.Id);
+            var result = await _userManager.DeleteAsync(user);
+            return result.Succeeded;
+        }
+
         public async Task<JwtToken> Login(Login login)
         {
             var authorized = await ValidateUser(login);

@@ -2,7 +2,6 @@ import { User } from "../../../../domain/models/User";
 import {
   Avatar,
   Box,
-  Container,
   IconButton,
   Stack,
   Table,
@@ -13,15 +12,39 @@ import {
   Typography,
 } from "@mui/material";
 import { blue, grey, red } from "@mui/material/colors";
-import React from "react";
+import React, { Dispatch, SetStateAction } from "react";
 import DeleteIcon from "@mui/icons-material/Delete";
 import ChangeCircleIcon from "@mui/icons-material/ChangeCircle";
+import { IDeleteUser } from "../../../../domain/usecases/IDeleteUser";
 
 type Props = {
   users: User[];
+  deleteUser: IDeleteUser;
+  setsnackBarOpen: Dispatch<SetStateAction<boolean>>;
+  setMessage: Dispatch<SetStateAction<string>>;
+  setActionPerformed: Dispatch<SetStateAction<boolean>>;
 };
 
-const UserTable: React.FC<Props> = ({ users }) => {
+const UserTable: React.FC<Props> = ({
+  users,
+  deleteUser,
+  setsnackBarOpen,
+  setMessage,
+  setActionPerformed,
+}) => {
+  const handleDelete = async (id: string) => {
+    try {
+      const res = await deleteUser.delete({
+        id: id,
+      });
+      setActionPerformed(res);
+      setMessage("User deleted");
+      setsnackBarOpen(true);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
     <Box sx={{ overflow: "scroll" }}>
       <Table>
@@ -54,7 +77,10 @@ const UserTable: React.FC<Props> = ({ users }) => {
                     <IconButton sx={{ p: 0 }}>
                       <ChangeCircleIcon sx={{ color: grey[700] }} />
                     </IconButton>
-                    <IconButton sx={{ p: 0 }}>
+                    <IconButton
+                      sx={{ p: 0 }}
+                      onClick={() => handleDelete(user.id)}
+                    >
                       <DeleteIcon sx={{ color: red[700] }} />
                     </IconButton>
                   </Stack>

@@ -3,13 +3,22 @@ import { makeWeatherPage } from "../factories/pages";
 import { makeLogin } from "../factories/pages/LoginFactory";
 import PrivateRoute from "./private-routes";
 import { makeUsersPage } from "../factories/pages/UsersFactory";
-import { useEffect } from "react";
-import { isTokenExpired } from "../adapters/currentAccountAdapter";
+import { useEffect, useState } from "react";
+import {
+  isTokenExpired,
+  removeCurrentAccount,
+} from "../adapters/currentAccountAdapter";
 
 const Router: React.FC = () => {
+  const [expired, setExpired] = useState(false);
   useEffect(() => {
-    isTokenExpired();
-  });
+    if (isTokenExpired()) {
+      removeCurrentAccount();
+      setExpired(true);
+    } else {
+      setExpired(false);
+    }
+  }, [expired]);
   return (
     <Switch>
       <Route path="/login" exact component={makeLogin} />

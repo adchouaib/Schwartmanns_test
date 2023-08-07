@@ -14,12 +14,13 @@ export const removeCurrentAccount = (): void => {
   return makeLocalStorage().remove("account");
 };
 
-export const isTokenExpired = (): void => {
+export const isTokenExpired = (): boolean => {
   const token = getCurrentAccount()?.token;
   if (token) {
     const decodeToken = jwtDecode<{ exp: number }>(token);
     if (decodeToken.exp && Date.now() >= decodeToken.exp * 1000) {
-      removeCurrentAccount();
+      return true;
     }
   }
+  return false;
 };

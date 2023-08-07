@@ -66,7 +66,21 @@ namespace WebApi.Controllers
             }
             catch (Exception ex)
             {
-                return BadRequest();
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpDelete("delete")]
+        public async Task<ActionResult<Boolean>> Delete([FromBody] DeleteUser deleteUser)
+        {
+            try
+            {
+                var result = await _userService.DeleteUser(deleteUser);
+                return result;
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
             }
         }
 
