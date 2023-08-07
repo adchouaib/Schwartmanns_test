@@ -84,6 +84,20 @@ namespace WebApi.Controllers
             }
         }
 
+        [HttpPatch("updatePassword")]
+        public async Task<ActionResult<bool>> UpdatePassword([FromBody] UpdatePassword updatePassword)
+        {
+            try
+            {
+                var result = await _userService.UpdatePassword(updatePassword);
+                return result;
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
         [HttpPost("login")]
         public async Task<ActionResult<JwtToken>> Login([FromBody] Login login)
         {

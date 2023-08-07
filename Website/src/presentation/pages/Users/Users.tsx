@@ -15,27 +15,45 @@ import UserForm from "./components/UserForm";
 import { ICreateUser } from "../../../domain/usecases/ICreateUser";
 import SnackBar from "./components/Snackbar";
 import { IDeleteUser } from "../../../domain/usecases/IDeleteUser";
+import { IUpdateUserPassword } from "../../../domain/usecases/IUpdateUserPassword";
+import UpdatePasswordForm from "./components/UpdatePasswordForm";
 
 type Props = {
   loadUserList: ILoadUserList;
   createUser: ICreateUser;
   deleteUser: IDeleteUser;
+  updateUserPassword: IUpdateUserPassword;
 };
 
-const Users: React.FC<Props> = ({ loadUserList, createUser, deleteUser }) => {
+const Users: React.FC<Props> = ({
+  loadUserList,
+  createUser,
+  deleteUser,
+  updateUserPassword,
+}) => {
   const [users, setUsers] = useState<User[]>([]);
   const [actionPerformed, setActionPerformed] = useState<boolean>(false);
   const [message, setMessage] = useState<string>("");
   const [snackBarOpen, setsnackBarOpen] = useState(false);
   const [loading, setLoading] = useState<boolean>(false);
-  const [open, setOpen] = useState<boolean>(false);
+  const [selectedUser, setSelectedUser] = useState<string>("");
 
-  const handleClickOpen = () => {
-    setOpen(true);
+  //userForm
+  const [userFormOpen, setUserFormOpen] = useState<boolean>(false);
+  const handleUserFormClickOpen = () => {
+    setUserFormOpen(true);
+  };
+  const handleUserFormClose = () => {
+    setUserFormOpen(false);
   };
 
-  const handleClose = () => {
-    setOpen(false);
+  //updatePasswordForm
+  const [updatePasswordOpen, setupdatePasswordOpen] = useState<boolean>(false);
+  const handleUpdatePassClickOpen = () => {
+    setupdatePasswordOpen(true);
+  };
+  const handleUpdatePassClose = () => {
+    setupdatePasswordOpen(false);
   };
 
   useEffect(() => {
@@ -62,13 +80,22 @@ const Users: React.FC<Props> = ({ loadUserList, createUser, deleteUser }) => {
           setMessage={setMessage}
           setOpen={setsnackBarOpen}
         />
+        <UpdatePasswordForm
+          userId={selectedUser}
+          setActionPerformed={setActionPerformed}
+          updateUserPassword={updateUserPassword}
+          setsnackBarOpen={setsnackBarOpen}
+          setMessage={setMessage}
+          handleClose={handleUpdatePassClose}
+          open={updatePasswordOpen}
+        />
         <UserForm
           setActionPerformed={setActionPerformed}
           createUser={createUser}
           setsnackBarOpen={setsnackBarOpen}
           setMessage={setMessage}
-          handleClose={handleClose}
-          open={open}
+          handleClose={handleUserFormClose}
+          open={userFormOpen}
         />
         <Stack spacing={3}>
           <Stack direction="row" justifyContent="space-between" spacing={4}>
@@ -83,7 +110,7 @@ const Users: React.FC<Props> = ({ loadUserList, createUser, deleteUser }) => {
                   </SvgIcon>
                 }
                 variant="contained"
-                onClick={handleClickOpen}
+                onClick={handleUserFormClickOpen}
               >
                 Add
               </Button>
@@ -94,6 +121,8 @@ const Users: React.FC<Props> = ({ loadUserList, createUser, deleteUser }) => {
           ) : (
             <UserTable
               users={users}
+              updateClickHandeler={handleUpdatePassClickOpen}
+              setSelectedUser={setSelectedUser}
               deleteUser={deleteUser}
               setMessage={setMessage}
               setsnackBarOpen={setsnackBarOpen}

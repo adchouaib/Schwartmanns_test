@@ -62,6 +62,13 @@ namespace Application.Services
             return result.Succeeded;
         }
 
+        public async Task<bool> UpdatePassword(UpdatePassword updatePassword)
+        {
+            var user = await GetById(updatePassword.Id);
+            var result = await _userManager.ChangePasswordAsync(user, updatePassword.currentPassword, updatePassword.newPassword);
+            return result.Succeeded;
+        }
+
         public async Task<JwtToken> Login(Login login)
         {
             var authorized = await ValidateUser(login);

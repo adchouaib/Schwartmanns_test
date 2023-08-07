@@ -20,6 +20,8 @@ import { IDeleteUser } from "../../../../domain/usecases/IDeleteUser";
 type Props = {
   users: User[];
   deleteUser: IDeleteUser;
+  updateClickHandeler: () => void;
+  setSelectedUser: Dispatch<SetStateAction<string>>;
   setsnackBarOpen: Dispatch<SetStateAction<boolean>>;
   setMessage: Dispatch<SetStateAction<string>>;
   setActionPerformed: Dispatch<SetStateAction<boolean>>;
@@ -31,6 +33,8 @@ const UserTable: React.FC<Props> = ({
   setsnackBarOpen,
   setMessage,
   setActionPerformed,
+  setSelectedUser,
+  updateClickHandeler,
 }) => {
   const handleDelete = async (id: string) => {
     try {
@@ -74,7 +78,13 @@ const UserTable: React.FC<Props> = ({
                 <TableCell>{user.email}</TableCell>
                 <TableCell>
                   <Stack alignItems="center" direction="row" spacing={2}>
-                    <IconButton sx={{ p: 0 }}>
+                    <IconButton
+                      sx={{ p: 0 }}
+                      onClick={() => {
+                        setSelectedUser(user.id);
+                        updateClickHandeler();
+                      }}
+                    >
                       <ChangeCircleIcon sx={{ color: grey[700] }} />
                     </IconButton>
                     <IconButton

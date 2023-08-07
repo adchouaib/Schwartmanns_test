@@ -13,6 +13,7 @@ namespace Application.Contracts
         Task CreateUser(CreateUser user);
         Task<JwtToken> Login(Login login);
         Task<bool> DeleteUser(DeleteUser deleteUser);
+        Task<bool> UpdatePassword(UpdatePassword updatePassword);
     }
 }
 

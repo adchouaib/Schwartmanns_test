@@ -16,6 +16,7 @@ import { Account } from "../../../domain/models/Account";
 import { getCurrentAccount } from "../../../main/adapters/currentAccountAdapter";
 import { useSetRecoilState } from "recoil";
 import { AccountState } from "../../../presentation/components/Atoms";
+import { blue } from "@mui/material/colors";
 
 type Props = {
   Authentication: IAuthenticate;
@@ -68,7 +69,7 @@ const Login: React.FC<Props> = ({ Authentication, SetCurrentAccount }) => {
           alignItems: "center",
         }}
       >
-        <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
+        <Avatar sx={{ m: 1, bgcolor: blue[700] }}>
           <LockOutlinedIcon />
         </Avatar>
         <Typography

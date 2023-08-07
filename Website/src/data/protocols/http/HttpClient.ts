@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-export type HttpMethod = "post" | "get" | "put" | "delete";
+export type HttpMethod = "post" | "get" | "put" | "delete" | "patch";
 
 export enum HttpStatusCode {
   ok = 200,
