@@ -30,6 +30,10 @@ const pages: Page[] = [
     name: "users",
     path: "/users",
   },
+  {
+    name: "dashboard",
+    path: "/dashboard",
+  },
 ];
 const settings = ["Logout"];
 

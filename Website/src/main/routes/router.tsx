@@ -1,5 +1,10 @@
 import { Switch, Route, Redirect } from "react-router-dom";
-import { makeWeatherPage, makeUsersPage, makeLogin } from "../factories/pages";
+import {
+  makeWeatherPage,
+  makeUsersPage,
+  makeLogin,
+  makeDashboardPage,
+} from "../factories/pages";
 import PrivateRoute from "./private-routes";
 import { useEffect, useState } from "react";
 import { isTokenExpired, removeCurrentAccount } from "../adapters";
@@ -19,6 +24,7 @@ const Router: React.FC = () => {
       <Route path="/login" exact component={makeLogin} />
       <Route path="/" exact component={() => <Redirect to={"/home"} />} />
       <PrivateRoute path="/users" exact component={makeUsersPage} />
+      <PrivateRoute path="/dashboard" exact component={makeDashboardPage} />
       <Route path="/home" exact component={makeWeatherPage} />
     </Switch>
   );

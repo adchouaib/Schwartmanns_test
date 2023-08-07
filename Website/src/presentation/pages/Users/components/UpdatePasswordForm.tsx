@@ -51,7 +51,9 @@ const UpdatePasswordForm: React.FC<Props> = ({
       });
       handleClose();
       setActionPerformed(res);
-      setMessage("user password updated");
+      res
+        ? setMessage("user password updated")
+        : setMessage("password isn't updated");
       setsnackBarOpen(true);
     } catch (error) {
       console.log(error);

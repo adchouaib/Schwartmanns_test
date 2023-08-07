@@ -1,4 +1,4 @@
-import { ICreateUser, UserType } from "@/domain/usecases";
+import { ICreateUser, UserType } from "../../../../domain/usecases";
 import {
   Box,
   Button,

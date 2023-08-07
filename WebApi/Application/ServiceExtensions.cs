@@ -12,6 +12,7 @@ namespace Application
 		{
 			services.AddAutoMapper(Assembly.GetExecutingAssembly());
 			services.AddScoped(typeof(IUserService), typeof(UserService));
+			services.AddScoped(typeof(IDashboardService), typeof(DashboardService));
 		}
 	}
 }
