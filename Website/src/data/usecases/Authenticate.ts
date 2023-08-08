@@ -22,7 +22,11 @@ export class Authenticate implements IAuthenticate {
 
     switch (HttpResponse.statusCode) {
       case HttpStatusCode.ok:
-        return HttpResponse.body;
+        if (HttpResponse.body) {
+          return HttpResponse.body;
+        } else {
+          throw new UnexpectedError("Response body is missing");
+        }
       case HttpStatusCode.unauthorized:
         throw new InvalidCredentialsError();
       default:

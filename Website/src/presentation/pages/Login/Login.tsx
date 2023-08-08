@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useForm, SubmitHandler } from "react-hook-form";
 import { IAuthenticate } from "@/domain/usecases/IAuthenticate";
 import React, { useEffect, useState } from "react";
@@ -53,7 +54,7 @@ const Login: React.FC<Props> = ({ Authentication, SetCurrentAccount }) => {
       setAccountState(account);
       SetCurrentAccount(account);
       navigate.push("/home");
-    } catch (error) {
+    } catch (error: any) {
       setError(error.message);
     }
   };

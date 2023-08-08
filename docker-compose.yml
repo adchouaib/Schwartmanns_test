@@ -1,28 +1,43 @@
 version: "3"
 services:
+  postgres:
+    image: postgres:latest
+    restart: always
+    environment:
+      POSTGRES_DB: Schwartmanns
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: root
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    networks:
+      - mynetwork
   webapi:
-    image: webapi
     build:
       context: ./WebApi
       dockerfile: Dockerfile
     ports:
-      - "5001:80"
+      - "2023:80"
     volumes:
       - ./WebApi:/app
+    depends_on:
+      - postgres
+    environment:
+      - SECRET_KEY=this is my custom Secret key for authentication
     networks:
       - mynetwork
-
   website:
-    image: website
     build:
-      context: ./Website
+      context: ./website
       dockerfile: Dockerfile
     ports:
       - "3000:80"
     volumes:
-      - ./Website:/app
+      - ./website:/app
     networks:
       - mynetwork
+
+volumes:
+  db-data:
 
 networks:
   mynetwork:

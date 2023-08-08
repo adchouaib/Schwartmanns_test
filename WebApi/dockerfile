@@ -1,15 +1,24 @@
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
-WORKDIR /app
+WORKDIR /source
 
-COPY . .
+COPY *.sln .
+COPY WebApi/*.csproj ./WebApi/
+COPY Domain/*.csproj ./Domain/
+COPY Infrastructure/*.csproj ./Infrastructure/
+COPY Application/*.csproj ./Application/
+
 RUN dotnet restore
 
-RUN dotnet publish -c Release -o out
+COPY WebApi/. ./WebApi/
+COPY Application/. ./Application/
+COPY Domain/. ./Domain/
+COPY Infrastructure/. ./Infrastructure/
 
-FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS runtime
+WORKDIR /source/WebApi
+RUN dotnet publish -c release -o /app --no-restore
+
+FROM mcr.microsoft.com/dotnet/aspnet:6.0
 WORKDIR /app
-COPY --from=build /app/out .
-
-EXPOSE 80
-
+ENV SECRET_KEY="this is my custom Secret key for authentication"
+COPY --from=build /app ./
 ENTRYPOINT ["dotnet", "WebApi.dll"]

@@ -5,7 +5,7 @@ import { HttpClient, HttpStatusCode } from "../protocols/http";
 export class CreateUser implements ICreateUser {
   constructor(
     private readonly url: string,
-    private readonly httpClient: HttpClient<CreateUserRequest>
+    private readonly httpClient: HttpClient<boolean>
   ) {}
 
   async create(params: CreateUserRequest): Promise<boolean> {
@@ -17,7 +17,11 @@ export class CreateUser implements ICreateUser {
 
     switch (HttpResponse.statusCode) {
       case HttpStatusCode.ok:
-        return HttpResponse.body;
+        if (HttpResponse.body) {
+          return HttpResponse.body;
+        } else {
+          throw new UnexpectedError("Response body is missing");
+        }
       case HttpStatusCode.unauthorized:
         throw new InvalidCredentialsError();
       default:

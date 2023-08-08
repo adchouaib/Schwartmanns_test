@@ -1,5 +1,5 @@
 import { ProjectPerClient } from "@/domain/models";
-import React, { useState } from "react";
+import React from "react";
 import Chart from "react-apexcharts";
 import { alpha, useTheme } from "@mui/material/styles";
 import { Card, CardContent } from "@mui/material";

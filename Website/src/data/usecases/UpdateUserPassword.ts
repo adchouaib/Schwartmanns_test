@@ -8,7 +8,7 @@ import {
 export class UpdateUserPassword implements IUpdateUserPassword {
   constructor(
     private readonly url: string,
-    private readonly httpClient: HttpClient<UpdateUserPasswordRequest>
+    private readonly httpClient: HttpClient<boolean>
   ) {}
 
   async updatePass(params: UpdateUserPasswordRequest): Promise<boolean> {
@@ -20,7 +20,11 @@ export class UpdateUserPassword implements IUpdateUserPassword {
 
     switch (HttpResponse.statusCode) {
       case HttpStatusCode.ok:
-        return HttpResponse.body;
+        if (HttpResponse.body) {
+          return HttpResponse.body;
+        } else {
+          throw new UnexpectedError("Response body is missing");
+        }
       case HttpStatusCode.unauthorized:
         throw new InvalidCredentialsError();
       default:

@@ -15,6 +15,7 @@ const SnackBar: React.FC<Props> = ({ open, setOpen, setMessage, message }) => {
     event: React.SyntheticEvent | Event,
     reason?: string
   ) => {
+    event.preventDefault();
     if (reason === "clickaway") {
       return;
     }

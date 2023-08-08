@@ -5,7 +5,7 @@ import { InvalidCredentialsError, UnexpectedError } from "../../domain/errors";
 export class DeleteUser implements IDeleteUser {
   constructor(
     private readonly url: string,
-    private readonly httpClient: HttpClient<DeleteUserRequest>
+    private readonly httpClient: HttpClient<boolean>
   ) {}
 
   async delete(params: DeleteUserRequest): Promise<boolean> {
@@ -17,7 +17,11 @@ export class DeleteUser implements IDeleteUser {
 
     switch (HttpResponse.statusCode) {
       case HttpStatusCode.ok:
-        return HttpResponse.body;
+        if (HttpResponse.body) {
+          return HttpResponse.body;
+        } else {
+          throw new UnexpectedError("Response body is missing");
+        }
       case HttpStatusCode.unauthorized:
         throw new InvalidCredentialsError();
       default:
