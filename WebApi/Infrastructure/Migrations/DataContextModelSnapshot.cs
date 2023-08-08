@@ -45,6 +45,24 @@ namespace Infrastructure.Migrations
                     b.HasIndex("SheetId");
 
                     b.ToTable("Circles");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("00c6a184-47f2-4b75-947c-415ee97445cf"),
+                            Radius = 10.0,
+                            SheetId = new Guid("448d661f-f1ea-47d8-9080-ef060a5f5bcd"),
+                            xPosition = 0.0,
+                            yPosition = 1.0
+                        },
+                        new
+                        {
+                            Id = new Guid("0131f75d-b99c-4f88-8219-b7deed04b118"),
+                            Radius = 20.0,
+                            SheetId = new Guid("448d661f-f1ea-47d8-9080-ef060a5f5bcd"),
+                            xPosition = 12.0,
+                            yPosition = 1.0
+                        });
                 });
 
             modelBuilder.Entity("Domain.Entities.Client", b =>
@@ -68,6 +86,36 @@ namespace Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Clients");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("eb67c695-d666-4a5e-81b8-fd486d44672b"),
+                            Address = "Rabat Technopolis",
+                            Name = "Capgemini",
+                            Phone = "0666666666"
+                        },
+                        new
+                        {
+                            Id = new Guid("84e8668b-7a49-4283-96aa-73b871f6e679"),
+                            Address = "Rabat Technopolis",
+                            Name = "novec",
+                            Phone = "0666666666"
+                        },
+                        new
+                        {
+                            Id = new Guid("dce52084-ed68-4f9e-85f6-fdf5e20a45ad"),
+                            Address = "Rabat Souissi",
+                            Name = "ALGO Consulting",
+                            Phone = "0666666666"
+                        },
+                        new
+                        {
+                            Id = new Guid("76ca6169-5587-4204-be0e-f45f9cb0288d"),
+                            Address = "Rabat Agdal",
+                            Name = "intelcap",
+                            Phone = "0666666666"
+                        });
                 });
 
             modelBuilder.Entity("Domain.Entities.Job", b =>
@@ -87,6 +135,14 @@ namespace Infrastructure.Migrations
                     b.HasIndex("ProjectId");
 
                     b.ToTable("Jobs");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("c42ef423-2dd0-4b12-a05c-36cebcbdc114"),
+                            MaterialId = 2,
+                            ProjectId = new Guid("d413951c-0a53-4531-adf5-a07838d7b966")
+                        });
                 });
 
             modelBuilder.Entity("Domain.Entities.Lines", b =>
@@ -112,6 +168,16 @@ namespace Infrastructure.Migrations
                     b.HasIndex("SheetId");
 
                     b.ToTable("PolyLines");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("6fbf3f83-42d3-40f8-888d-cc5480b4933c"),
+                            Bulge = 10.0,
+                            SheetId = new Guid("448d661f-f1ea-47d8-9080-ef060a5f5bcd"),
+                            xPosition = 10.0,
+                            yPosition = 10.0
+                        });
                 });
 
             modelBuilder.Entity("Domain.Entities.Project", b =>
@@ -146,6 +212,44 @@ namespace Infrastructure.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("Projects");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("d413951c-0a53-4531-adf5-a07838d7b966"),
+                            ClientId = new Guid("eb67c695-d666-4a5e-81b8-fd486d44672b"),
+                            FileName = "cap.pdf",
+                            FilePath = "capProjects/cap.pdf",
+                            Name = "Création d'un dashboard",
+                            UserId = "1e8356cb-a0fd-4859-b483-9e0fd7489afb"
+                        },
+                        new
+                        {
+                            Id = new Guid("1829a532-fcec-45a2-93b8-8bbb7a8eb9c0"),
+                            ClientId = new Guid("eb67c695-d666-4a5e-81b8-fd486d44672b"),
+                            FileName = "cap2.pdf",
+                            FilePath = "capProjects/cap2.pdf",
+                            Name = "migration d'une application vers .Net Core",
+                            UserId = "1e8356cb-a0fd-4859-b483-9e0fd7489afb"
+                        },
+                        new
+                        {
+                            Id = new Guid("27f07d89-745b-441c-9cf1-d9559f5294ed"),
+                            ClientId = new Guid("dce52084-ed68-4f9e-85f6-fdf5e20a45ad"),
+                            FileName = "algo.pdf",
+                            FilePath = "algoProjects/algo.pdf",
+                            Name = "mise en place d'une architecture microservice",
+                            UserId = "1e8356cb-a0fd-4859-b483-9e0fd7489afb"
+                        },
+                        new
+                        {
+                            Id = new Guid("c470b265-87c9-4447-a817-8269f052bc6c"),
+                            ClientId = new Guid("84e8668b-7a49-4283-96aa-73b871f6e679"),
+                            FileName = "novec.pdf",
+                            FilePath = "novecProjects/novec.pdf",
+                            Name = "migration vers dotnet core",
+                            UserId = "1e8356cb-a0fd-4859-b483-9e0fd7489afb"
+                        });
                 });
 
             modelBuilder.Entity("Domain.Entities.Sheet", b =>
@@ -168,6 +272,22 @@ namespace Infrastructure.Migrations
                     b.HasIndex("JobId");
 
                     b.ToTable("Sheets");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("448d661f-f1ea-47d8-9080-ef060a5f5bcd"),
+                            JobId = new Guid("c42ef423-2dd0-4b12-a05c-36cebcbdc114"),
+                            Length = 10.0,
+                            Width = 10.0
+                        },
+                        new
+                        {
+                            Id = new Guid("47e5baa6-ac3d-4c5b-be21-4b1d3c32c7bd"),
+                            JobId = new Guid("c42ef423-2dd0-4b12-a05c-36cebcbdc114"),
+                            Length = 12.0,
+                            Width = 12.0
+                        });
                 });
 
             modelBuilder.Entity("Domain.Entities.User", b =>
@@ -239,6 +359,26 @@ namespace Infrastructure.Migrations
                         .HasDatabaseName("UserNameIndex");
 
                     b.ToTable("AspNetUsers", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "1e8356cb-a0fd-4859-b483-9e0fd7489afb",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "4235646d-f8e0-43d3-bbce-1853194ff6f6",
+                            Email = "admin@gmail.com",
+                            EmailConfirmed = false,
+                            LockoutEnabled = false,
+                            Name = "admin",
+                            NormalizedEmail = "ADMIN@GMAIL.COM",
+                            NormalizedUserName = "ADMIN",
+                            PasswordHash = "AQAAAAIAAYagAAAAEHmWJA8DxCBUOdgk0W2v3AIp7CO671Fof1VP4ZVFBS6lXVprVMhXrnvCxN27yy0BXA==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "ab1b9f29-082b-44e0-a332-4e2b45346639",
+                            TwoFactorEnabled = false,
+                            Type = 0,
+                            UserName = "admin"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>

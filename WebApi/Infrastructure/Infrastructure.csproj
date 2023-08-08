@@ -15,10 +15,13 @@
     <None Remove="Context\" />
     <None Remove="Microsoft.EntityFrameworkCore.Design" />
     <None Remove="Repositories\" />
+    <None Remove="Configuration\" />
+    <None Remove="Configuration\ClientConfiguration.ts" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Context\" />
     <Folder Include="Repositories\" />
+    <Folder Include="Configuration\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.8">

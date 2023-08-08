@@ -1,5 +1,6 @@
 ﻿using System;
 using Domain.Entities;
+using Infrastructure.Configuration;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
@@ -52,6 +53,15 @@ namespace Infrastructure.Context
                 .HasForeignKey(c => c.SheetId);
 
             base.OnModelCreating(builder);
+
+            //seeding data
+            builder.ApplyConfiguration(new UserConfiguration());
+            builder.ApplyConfiguration(new ClientConfiguration());
+            builder.ApplyConfiguration(new ProjectConfiguration());
+            builder.ApplyConfiguration(new JobConfiguration());
+            builder.ApplyConfiguration(new SheetConfiguration());
+            builder.ApplyConfiguration(new CircleConfiguration());
+            builder.ApplyConfiguration(new LineConfiguration());
         }
     }
 }
