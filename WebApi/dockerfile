@@ -17,7 +17,7 @@ COPY Infrastructure/. ./Infrastructure/
 WORKDIR /source/WebApi
 RUN dotnet publish -c release -o /app --no-restore
 
-FROM mcr.microsoft.com/dotnet/aspnet:6.0
+FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS runtime
 WORKDIR /app
 ENV SECRET_KEY="this is my custom Secret key for authentication"
 COPY --from=build /app ./
