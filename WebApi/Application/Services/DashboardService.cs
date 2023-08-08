@@ -37,6 +37,12 @@ namespace Application.Services
 
             return statistics; 
         }
+
+        public async Task<List<ProjectPerClient>> GetProjectPerClients()
+        {
+            var projectsPerClient = await _clientRepository.ProjectPerClients();
+            return projectsPerClient;
+        }
     }
 }
 

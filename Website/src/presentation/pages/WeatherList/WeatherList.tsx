@@ -22,26 +22,10 @@ const WeatherList: React.FC<Props> = ({ loadWeatherList }: Props) => {
 
   return (
     <>
-      <Typography
-        variant="h1"
-        component="h1"
-        align="center"
-        noWrap
-        sx={{
-          fontFamily: "Big Shoulders Display, cursive",
-        }}
-      >
+      <Typography variant="h1" component="h1" align="center" noWrap>
         Weather API
       </Typography>
-      <Typography
-        variant="h6"
-        component="h6"
-        align="center"
-        color={"GrayText"}
-        sx={{
-          fontFamily: "Lexend Deca, sans-serif",
-        }}
-      >
+      <Typography variant="h6" component="h6" align="center" color={"GrayText"}>
         made using Dotnet and ReactJs
       </Typography>
       {loading ? (

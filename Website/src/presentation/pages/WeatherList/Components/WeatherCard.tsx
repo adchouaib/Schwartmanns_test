@@ -55,9 +55,6 @@ const WeatherCard: React.FC<Props> = ({ key, weather }) => {
           component="h2"
           align="center"
           noWrap
-          sx={{
-            fontFamily: "Big Shoulders Display, cursive",
-          }}
         >
           {weather.temperatureC}
         </Typography>
@@ -67,9 +64,6 @@ const WeatherCard: React.FC<Props> = ({ key, weather }) => {
           align="center"
           component="p"
           noWrap
-          sx={{
-            fontFamily: "Lexend Deca, sans-serif",
-          }}
         >
           {weather.date}
         </Typography>

@@ -6,6 +6,7 @@ namespace Application.Contracts
 	public interface IDashboardService
 	{
 		Task<List<Stat>> getCountEntities();
+		Task<List<ProjectPerClient>> GetProjectPerClients();
 	}
 }
 

@@ -5,3 +5,4 @@ export * from "./LoadUserListFactory";
 export * from "./LoadWeatherListFactory";
 export * from "./UpdateUserPasswordFactory";
 export * from "./LoadDashboardTotalFactory";
+export * from "./LoadProjectsPerClientFactory";

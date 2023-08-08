@@ -1,24 +1,24 @@
-import { ILoadDashboardTotal } from "@/domain/usecases";
+import { ILoadProjectsPerClient } from "@/domain/usecases";
 import { HttpClient, HttpStatusCode } from "../protocols/http";
-import { Stat } from "@/domain/models";
+import { ProjectPerClient } from "@/domain/models";
 import { AccessDeniedError, UnexpectedError } from "../../domain/errors";
 
-export class LoadDashboardTotal implements ILoadDashboardTotal {
+export class LoadProjectsPerClient implements ILoadProjectsPerClient {
   constructor(
     private readonly url: string,
-    private readonly httpClient: HttpClient<Stat[]>
+    private readonly httpClient: HttpClient<ProjectPerClient[]>
   ) {}
-  async loadAll(): Promise<Stat[]> {
+  async loadAll(): Promise<ProjectPerClient[]> {
     const HttpResponse = await this.httpClient.request({
       url: this.url,
       method: "get",
     });
 
-    const Stats = HttpResponse.body || [];
+    const Projects = HttpResponse.body || [];
 
     switch (HttpResponse.statusCode) {
       case HttpStatusCode.ok:
-        return Stats.map((stat) => ({ ...stat }));
+        return Projects.map((project) => ({ ...project }));
       case HttpStatusCode.noContent:
         return [];
       case HttpStatusCode.forbidden:

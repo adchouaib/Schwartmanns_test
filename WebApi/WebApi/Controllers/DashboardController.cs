@@ -19,7 +19,14 @@ namespace WebApi.Controllers
         public async Task<ActionResult<List<Stat>>> Get()
         {
             var result = await _dashboardService.getCountEntities();
-            return result;
+            return Ok(result);
+        }
+
+        [HttpGet("getProjectPerClient")]
+        public async Task<ActionResult<List<ProjectPerClient>>> GetProjectPerClient()
+        {
+            var result = await _dashboardService.GetProjectPerClients();
+            return Ok(result);
         }
 	}
 }
