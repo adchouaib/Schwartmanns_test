@@ -1,30 +1,29 @@
 version: "3"
 services:
   postgres:
+    container_name: postgres
     image: postgres:latest
     restart: always
+    ports:
+      - "2024:5432"
     environment:
-      POSTGRES_DB: Schwartmanns
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: root
+      POSTGRES_DB: Schwartmanns
     volumes:
       - db-data:/var/lib/postgresql/data
-    networks:
-      - mynetwork
   webapi:
+    container_name: webapi
     build:
       context: ./WebApi
       dockerfile: Dockerfile
     ports:
       - "2023:80"
-    volumes:
-      - ./WebApi:/app
     depends_on:
       - postgres
     environment:
-      - SECRET_KEY=this is my custom Secret key for authentication
-    networks:
-      - mynetwork
+      ConnectionStrings__DefaultConnection: "Host=postgres;Port=5432;Database=Schwartmanns;Username=postgres;Password=root"
+      SECRET_KEY: "this is my custom Secret key for authentication"
   website:
     build:
       context: ./website
@@ -33,11 +32,8 @@ services:
       - "3000:80"
     volumes:
       - ./website:/app
-    networks:
-      - mynetwork
+    environment:
+      VITE_API_URL: "http://localhost:2023"
 
 volumes:
   db-data:
-
-networks:
-  mynetwork:
