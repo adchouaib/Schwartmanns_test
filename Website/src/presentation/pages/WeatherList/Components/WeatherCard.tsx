@@ -18,7 +18,6 @@ import { Grid } from "@mui/material";
 import "./WeatherCard.css";
 
 type Props = {
-  key: number;
   weather: Weather;
 };
 
@@ -26,7 +25,7 @@ type WeatherIconDictionnary = {
   [key: string]: string;
 };
 
-const WeatherCard: React.FC<Props> = ({ key, weather }) => {
+const WeatherCard: React.FC<Props> = ({ weather }) => {
   const weatherIcons: WeatherIconDictionnary = {
     Windy: WindyIcon,
     WindyCloud: WindyCloudIcon,
@@ -42,7 +41,7 @@ const WeatherCard: React.FC<Props> = ({ key, weather }) => {
 
   return (
     <Grid item component={Card} xs={12} md={2} className="card weather">
-      <CardContent key={key}>
+      <CardContent>
         <CardMedia
           className="image"
           component="img"

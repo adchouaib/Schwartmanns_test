@@ -66,11 +66,9 @@ const UserTable: React.FC<Props> = ({
                 <TableCell>
                   <Stack alignItems="center" direction="row" spacing={2}>
                     <IconButton sx={{ p: 0 }}>
-                      <Avatar
-                        alt={user.name.toUpperCase()}
-                        src="/static/images/avatar/2.jpg"
-                        sx={{ bgcolor: blue[700] }}
-                      />
+                      <Avatar sx={{ bgcolor: blue[700] }}>
+                        {user.name[0].toUpperCase()}
+                      </Avatar>
                     </IconButton>
                     <Typography variant="subtitle1">{user.name}</Typography>
                   </Stack>

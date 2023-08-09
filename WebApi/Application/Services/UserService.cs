@@ -72,8 +72,16 @@ namespace Application.Services
         public async Task<JwtToken> Login(Login login)
         {
             var authorized = await ValidateUser(login);
-            string token = await CreateToken();
-            return new JwtToken(token, _user.Name);
+            if (authorized)
+            {
+                string token = await CreateToken();
+                return new JwtToken(token, _user.Name);
+            }
+            else
+            {
+                throw new UnauthorizedAccessException("Username or password not valid");
+            }
+
         }
 
         private async Task<bool> ValidateUser(Login request)

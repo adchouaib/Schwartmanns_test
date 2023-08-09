@@ -11,11 +11,7 @@ type Props = {
 };
 
 const SnackBar: React.FC<Props> = ({ open, setOpen, setMessage, message }) => {
-  const handleClose = (
-    event: React.SyntheticEvent | Event,
-    reason?: string
-  ) => {
-    event.preventDefault();
+  const handleClose = (reason?: string) => {
     if (reason === "clickaway") {
       return;
     }
@@ -30,7 +26,7 @@ const SnackBar: React.FC<Props> = ({ open, setOpen, setMessage, message }) => {
         size="small"
         aria-label="close"
         color="inherit"
-        onClick={handleClose}
+        onClick={() => handleClose()}
       >
         <CloseIcon fontSize="small" />
       </IconButton>
@@ -43,7 +39,7 @@ const SnackBar: React.FC<Props> = ({ open, setOpen, setMessage, message }) => {
         <Snackbar
           open={open}
           autoHideDuration={2000}
-          onClose={handleClose}
+          onClose={() => handleClose()}
           message={message}
           action={action}
         />

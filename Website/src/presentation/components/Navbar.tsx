@@ -174,10 +174,7 @@ const Navbar: React.FC = () => {
             <Box sx={{ flexGrow: 0 }}>
               <Tooltip title="Open settings">
                 <IconButton onClick={handleOpenUserMenu}>
-                  <Avatar
-                    alt={Account.name.toUpperCase()}
-                    src="/static/images/avatar/2.jpg"
-                  />
+                  <Avatar>{Account.name[0].toUpperCase()}</Avatar>
                 </IconButton>
               </Tooltip>
               <Menu

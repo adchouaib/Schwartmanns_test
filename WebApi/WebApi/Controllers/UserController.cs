@@ -62,7 +62,7 @@ namespace WebApi.Controllers
                     return BadRequest(ModelState);
 
                 await _userService.CreateUser(user);
-                return Ok();
+                return Ok(true);
             }
             catch (Exception ex)
             {
