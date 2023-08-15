@@ -19,4 +19,9 @@
   4. Navigate to the Website folder and run the following command in the terminal \
      `npm run dev`
 
+## login to Admin Account :
+
+Email: admin@gmail.com
+Password: Admin123@
+
 These steps will help you run the application successfully, whether you have Docker installed or not
