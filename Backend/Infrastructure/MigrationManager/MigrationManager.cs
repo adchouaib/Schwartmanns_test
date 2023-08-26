@@ -17,7 +17,7 @@ namespace Infrastructure.MigrationManager
         private const int MaxRetries = 6;
         private const int RetryDelayMilliseconds = 10000;
 
-        public static IApplicationBuilder UseMigrationManager(this IApplicationBuilder app)
+        public static IApplicationBuilder MigrateData(this IApplicationBuilder app)
         {
             using (var scope = app.ApplicationServices.CreateScope())
             {

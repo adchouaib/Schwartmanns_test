@@ -107,9 +107,9 @@ namespace Application.Services
             return token;
         }
 
-        private static SigningCredentials GetSigningCredentials()
+        private SigningCredentials GetSigningCredentials()
         {
-            string secret = Environment.GetEnvironmentVariable("SECRET_KEY") ?? string.Empty;
+            string secret = _configuration.GetValue<string>("SECRET_KEY");
             var key = Encoding.UTF8.GetBytes(secret);
             var securityKey = new SymmetricSecurityKey(key);
 

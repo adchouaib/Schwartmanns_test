@@ -50,7 +50,7 @@ namespace Infrastructure
             IConfiguration configuration)
         {
             var jwtSettings = configuration.GetSection("JwtSettings");
-            var secretKey = Environment.GetEnvironmentVariable("SECRET_KEY");
+            var secretKey = configuration.GetValue<string>("SECRET_KEY");
             services.AddAuthentication(opt =>
             {
                 opt.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;

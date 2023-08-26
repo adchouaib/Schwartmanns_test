@@ -70,7 +70,7 @@ namespace Backend
                 endpoints.MapControllers();
             });
 
-            app.MigrateDatabase().Run();
+            app.MigrateData();
         }
     }
 }
